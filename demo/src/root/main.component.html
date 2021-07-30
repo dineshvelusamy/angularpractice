@@ -1,0 +1,24 @@
+<fieldset>
+    <legend>
+        <h1>Main Dashboard</h1>
+    </legend>
+    <h3> Login component</h3>
+    <output>Login Status : {{loginStatus}}</output>
+    <!-- ViewChild -->
+    <login-comp [headerContent]="'Login Here'" (loginStatusChanged)="onLoginStatusChanged($event)"></login-comp>
+    <h3> SignUp component</h3>
+    <output>Signup status : {{signupStatus}}</output>
+    <signup-comp [signupHeader]="'SignUp Here'" (signUpStatusChanged)="onSignUpStatusChanged($event)" (signedUserDataChanged)="onSignedUserDataChanged($event)"></signup-comp>
+    <output>New User Information :
+          {{signedUserData.userName}} 
+          {{signedUserData.password}} 
+          {{signedUserData.email}}</output>
+    <!-- <br>
+    <br>
+    <h3> Reset Password component</h3>
+    <reset-pass-comp></reset-pass-comp>
+    <br>
+    <br>
+    <h3> Password Recovery component</h3> 
+    <recover-pass-comp></recover-pass-comp>-->
+</fieldset>

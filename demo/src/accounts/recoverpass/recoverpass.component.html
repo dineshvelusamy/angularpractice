@@ -1,0 +1,39 @@
+<form #recoverPassForm="ngForm" (ngSubmit)="onPasswordRecovery(recoverPassForm)">
+<p>
+  <label> Recovery Email : </label>
+  <input type="text" id="recoverEmail" name = "recoverEmail" [(ngModel)] = "recoveryEmail" #recoverEmailRef="ngModel" required email/>
+</p>
+<div *ngIf="!recoverEmailRef?.valid && (recoverEmailRef?.touched || recoverEmailRef?.dirty)">
+  <div *ngIf="recoverEmailRef.errors?.required">
+  <output> Invalid recovery email</output>
+</div>
+</div>
+<p>
+  <button type="submit" [disabled]="!recoverPassForm.valid">Recover Password</button>
+</p>
+<p>
+  <button type="button" (click)="onClear(recoverPassForm)">Clear</button>
+</p>
+</form>
+
+
+<!-- 
+<table>
+    <tr>
+      <td>
+      Email:
+      </td>
+      <td>
+        <input type="text"  [(ngModel)]="recoveryEmail"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <input type="button" value="Submit" (click)="onPasswordRecovery()"/>
+      </td>
+      <td>
+        <input type="button" value="Clear" (click)="onClear()"/>
+      </td>
+    </tr>
+  </table>-->
+  <output>{{recoverPassStatus}}</output>

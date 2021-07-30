@@ -1,0 +1,88 @@
+<form #resetPasswordForm="ngForm" (ngSubmit)="onPasswordChange(resetPasswordForm)">
+<p>
+  <label>Old Password : </label>
+  <input type = "passsword" id = "oldPassword" name = "oldPassword" [(ngModel)] = "oldPassword" #oldPassRef = "ngModel" required  minlength="5" maxlength="10"/>
+</p>
+<div *ngIf="!oldPassRef?.valid && (oldPassRef?.dirty || oldPassRef?.touched)">
+  <!-- Give Error Feedback-->
+  <div *ngIf="oldPassRef.errors?.required">
+    <output>Password is Required</output>
+  </div>
+
+   <div *ngIf="oldPassRef.errors?.maxlength">
+    <output>Password maxLength is {{oldPassRef.errors?.maxlength?.requiredLength}}</output>
+   </div>
+
+</div>
+<p>
+  <label>New Password : </label>
+  <input type = "password" id = "newPassword" name = "newPassword" [(ngModel)] = "newPassword" #newPassRef = "ngModel"required  minlength="5" maxlength="10"/>
+</p>
+<div *ngIf="!newPassRef?.valid && (newPassRef?.dirty || newPassRef?.touched)">
+  <!-- Give Error Feedback-->
+  <div *ngIf="newPassRef.errors?.required">
+    <output>Password is Required</output>
+  </div>
+
+   <div *ngIf="newPassRef.errors?.maxlength">
+    <output>Password maxLength is {{newPassRef.errors?.maxlength?.requiredLength}}</output>
+   </div>
+
+</div>
+<p>
+  <label>Confirm New Password : </label>
+  <input type = "password" id = "newConfPassword" name = "newConfPassword" [(ngModel)] = "newConfPassword" #newConfPassRef = "ngModel" required minlength="5" maxlength="10"/>
+</p>
+<div *ngIf="!newConfPassRef?.valid && (newConfPassRef?.dirty || newConfPassRef?.touched)">
+  <!-- Give Error Feedback-->
+  <div *ngIf="newConfPassRef.errors?.required">
+    <output>Password is Required</output>
+  </div>
+
+   <div *ngIf="newConfPassRef.errors?.maxlength">
+    <output>Password maxLength is {{newConfPassRef.errors?.maxlength?.requiredLength}}</output>
+   </div>
+
+</div>
+<p>
+  <button type="submit" [disabled]="!resetPasswordForm.valid">Reset Password</button>
+</p>
+<p>
+  <button type="button" (click)="onClear(resetPasswordForm)">Clear</button>
+</p>
+</form>
+<!-- <table>
+    <tr>
+      <td>
+      Old Password:
+      </td>
+      <td>
+        <input type="password" [(ngModel)]="oldPassword" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+     New Password:
+      </td>
+      <td>
+        <input type="password"  [(ngModel)]="newPassword" />
+      </td>
+    </tr>
+    <tr>
+        <td>
+      Confirm New Password:
+        </td>
+        <td>
+          <input type="password"  [(ngModel)]="newConfPassword"/>
+        </td>
+      </tr>
+    <tr>
+      <td>
+      <input type="button" value="Submit" (click)="onPasswordChange()"/>
+      </td>
+      <td>
+        <input type="button" value="Clear" (click)="onClear()"/>
+      </td>
+    </tr>
+  </table> -->
+  <output>{{resetPasswordStatus}}</output>

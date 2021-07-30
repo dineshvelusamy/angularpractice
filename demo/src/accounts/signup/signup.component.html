@@ -1,0 +1,80 @@
+<fieldset>
+  <legend>{{signupHeader}}</legend>
+  <form #signupform="ngForm" (ngSubmit)="onSignUp(signupform)">
+    <p>
+        <label>UserName : </label>
+        <input type="text" id="userName" name="userName" [(ngModel)]="userName" #userNameRef="ngModel" required />
+    </p>
+    <div *ngIf="!userNameRef?.valid && (userNameRef?.dirty || userNameRef?.touched)">
+        <!-- Give Error Feedback-->
+        <output>User Name Required</output>
+    </div>
+    <p>
+        <label>Password : </label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" #passwordRef="ngModel" required  minlength="5" maxlength="10" />
+    </p>
+    <div *ngIf="!passwordRef?.valid && (passwordRef?.dirty || passwordRef?.touched)">
+        <!-- Give Error Feedback-->
+        <div *ngIf="passwordRef.errors?.required">
+          <output>Password is Required</output>
+        </div>
+    
+         <div *ngIf="passwordRef.errors?.maxlength">
+          <output>Password maxLength is {{passwordRef.errors?.maxlength?.requiredLength}}</output>
+         </div>
+    
+      </div>
+    <p>
+        <label>Email : </label>
+        <input type="text" id="email" name="email" #emailRef="ngModel" [(ngModel)]="email" required email/>
+    </p>
+    <div *ngIf="!emailRef?.valid && (emailRef?.touched || emailRef?.dirty)">
+        <div *ngIf="emailRef.errors?.required">
+            <output>Invalid email</output>
+        </div>
+    </div>
+    <p>
+        <button type="submit" [disabled]="!signupform.valid">Sign up</button>
+    </p>
+    <p>
+        <button type="button" (click)="onClear(signupform)">Clear</button>
+    </p>
+</form>
+</fieldset>
+
+
+<!-- 
+<table>
+    <tr>
+      <td>
+      UserName:
+      </td>
+      <td>
+        <input #userNameTextBox type="text" [value]="userName" (input)="onUserNameChanged(userNameTextBox.value)"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      Password:
+      </td>
+      <td>
+        <input #passwordTextBox type="password" [value]="password" (input)="onPasswordChanged(passwordTextBox.value)"/>
+      </td>
+    </tr>
+    <tr>
+        <td>
+        Email:
+        </td>
+        <td>
+          <input #emailTextBox type="text" [value]="email" (input)="onEmailChanged(emailTextBox.value)"/>
+        </td>
+      </tr>
+    <tr>
+      <td>
+      <input type="button" value="Submit" (click)="onSignUp()"/>
+      </td>
+      <td>
+        <input type="button" value="Clear" (click)="onClear()"/>
+      </td>
+    </tr>
+  </table> -->
