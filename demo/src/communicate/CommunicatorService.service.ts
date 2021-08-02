@@ -7,7 +7,7 @@ export class CommunicatorService {
     streamObservable = this.stream.asObservable();
 
     publish(data:string) {
-        console.log("Data received "+data);
+        // console.log("Data received "+data);
         this.stream.next(data);
     }
 
