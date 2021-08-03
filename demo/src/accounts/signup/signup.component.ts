@@ -1,4 +1,5 @@
 import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'signup-comp',
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit {
   @Output()
   signedUserDataChanged = new EventEmitter<any>();
 
-  constructor() {
+  constructor(public routerSvc:Router) {
 
     this.userName = "Enter UserName here";
     this.password = "Enter Password here";
@@ -55,8 +56,10 @@ export class SignupComponent implements OnInit {
     this.signupObj.password=signupform.form.value.password;
     this.signupObj.email=signupform.form.value.email;
     // this.signedUserDataChanged.emit(signupform.form.value.userName + "  "+signupform.form.value.password+ "  "+signupform.form.value.email);
-    this.signedUserDataChanged.emit(this.signupObj);
+    // this.signedUserDataChanged.emit(this.signupObj);
     console.log(this.signupObj);
+
+    this.routerSvc.navigate(['/navbar']);
   }
 
     onClear(signupform:any) {
